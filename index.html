@@ -71,28 +71,49 @@ footer{background:#07152f;color:#d0dcf0;padding:40px 0 90px}.foot{display:flex;j
 const WA="6281934704730";
 function openWA(message){window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(message),"_blank")}
 document.querySelectorAll(".choose").forEach(b=>b.onclick=()=>{document.querySelector("#rpack").value=b.dataset.paket;document.querySelector("#daftar").scrollIntoView({behavior:"smooth"})});
-document.querySelector("#coverage").onsubmit=e=>{
+document.querySelector("#coverage").onsubmit = e => {
     e.preventDefault();
 
-    openWA(`Halo, saya ingin cek jangkauan XL SATU.
+    const nama = document.querySelector("#cname").value.trim();
+    const phone = document.querySelector("#cphone").value.trim();
+    const alamat = document.querySelector("#caddress").value.trim();
 
-Nama: ${document.querySelector("#cname").value}
-No. WhatsApp: ${document.querySelector("#cphone").value}
-Alamat pemasangan: ${document.querySelector("#caddress").value}
+    const message = [
+        "📡 *CEK JANGKAUAN XL SATU*",
+        "",
+        "👤 Nama: " + nama,
+        "📱 No. WhatsApp: " + phone,
+        "📍 Alamat pemasangan: " + alamat,
+        "",
+        "Mohon dibantu cek ketersediaan jaringan XL SATU di alamat tersebut.",
+        "",
+        "Terima kasih."
+    ].join("\n");
 
-Mohon dibantu cek ketersediaan jaringan.`);
+    openWA(message);
 };
-document.querySelector("#register").onsubmit=e=>{
+document.querySelector("#register").onsubmit = e => {
     e.preventDefault();
 
-    openWA(`Halo, saya ingin mendaftar XL SATU.
+    const nama = document.querySelector("#rname").value.trim();
+    const phone = document.querySelector("#rphone").value.trim();
+    const paket = document.querySelector("#rpack").value.trim();
+    const alamat = document.querySelector("#raddress").value.trim();
 
-Nama: ${document.querySelector("#rname").value}
-No. WhatsApp: ${document.querySelector("#rphone").value}
-Paket: ${document.querySelector("#rpack").value}
-Alamat pemasangan: ${document.querySelector("#raddress").value}
+    const message = [
+        "📋 *PENDAFTARAN XL SATU*",
+        "",
+        "👤 Nama: " + nama,
+        "📱 No. WhatsApp: " + phone,
+        "🚀 Paket: " + paket,
+        "📍 Alamat pemasangan: " + alamat,
+        "",
+        "Mohon dibantu proses pendaftaran dan cek ketersediaan jaringan.",
+        "",
+        "Terima kasih."
+    ].join("\n");
 
-Mohon dibantu proses pendaftaran dan cek ketersediaan jaringan.`);
+    openWA(message);
 };
 function rupiah(n){return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(Math.max(0,n))}
 function calc(){let old=+document.querySelector("#oldbill").value||0,pack=+document.querySelector("#calcpack").value||0,s=Math.max(0,old-pack);document.querySelector("#save").textContent=rupiah(s);document.querySelector("#year").textContent=rupiah(s*12)}
